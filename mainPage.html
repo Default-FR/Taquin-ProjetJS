@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Taquin</title>
+		<link rel="stylesheet" type="text/css" href="mainStyle.css">
+		<script type="text/javascript" src="modele.js"></script>
+		<link rel="icon" type="image/png" href="ressources/favicon.png" />
+	</head>
+
+	<body onload="newGame();playMusic();"		>
+		<audio id="audioPlayer" src="ressources/mainMusic.mp3"></audio>
+
+		<div id="titre">
+			Bienvenue dans le jeu du Taquin
+		</div>
+
+		<div id="corps">
+			<div id="div_jeu">
+				
+				<div class="select_enhanced">
+					<select name="tailleJeu" id="changementTaille" size="1" onchange="newGame()">
+						<option value="3" selected="selected">Taille 3x3</option>
+						<option value="4">Taille 4x4</option>
+						<option value="5">Taille 5x5</option>
+					</select>
+				</div>
+
+				<table id="table"></table>
+
+				<input type="label" id="l_enhanced" value="Votre temps: 0.00s (se lancera lors du premier clic)" readonly="readonly"/>
+			</div>
+
+			<div id="div_options">
+				<div class="Button_option">
+					<button onclick="newGame()">Nouvelle partie</button><br/>
+					<button onclick="formImage()">Ajouter une image</button><br/>
+					<div id="divImg">
+						<form action="saveImage.php" method="post" enctype="multipart/form-data">
+							<label for="file">Selectionnez une image [.jpg .jpeg .gif .png] (max 20Mo)&nbsp;:</label><br/>
+							<input type="file" name="file" id="file"/><br/><br/>
+							<input type="submit" value="Envoyer" name="submit"/>
+						</form>
+					</div>
+					<button onclick="showMeilleursScores();">Meilleurs scores</button><br/>
+					<div id="divMeilleursScores">					</div>
+					<button onclick="showRegles();">Règles du jeu</button><br/>
+					<div id="divRegles">
+						<p>
+						Reconstituez le puzzle le plus rapidement possible:<br/><br/>
+
+						Cliquez sur une case adjascente à la case bleue pour intervertir les deux cases
+						Votre temps (qui est votre score) est affiché en bas de la grille; gotta go fast!
+						</p>
+					</div>
+					
+					<div id="Son">
+						<div id="imgSon">
+							<img src="ressources/play.png" id="img1" onclick="playMusic()" style="cursor:pointer;"/>
+							<img src="ressources/pause.png" id="img2" onclick="stopMusic()" style="cursor:pointer;"/>
+						</div>
+						<div id="boutSon">
+							<input id="boutonSon" type="button" value="Volume: 100%" onclick="changerSon()">	
+						</div>
+					</div>
+
+					<div id="apercu">
+						<label>Image actuelle:</label><br/>
+						<img src="ressources/gameImage.jpg" id="image_apercu" width="35%" height="35%"/>
+					</div>	
+					<br/><button onclick="showCredits();">Crédits</button><br/>
+					<div id="divCredits">
+						<label>Crédits:</label><br/>
+						<p>
+							        Conception:      Pierre Bouillon<br/>
+							        Musique:         Rick Astley - Never Gonna Give You Up'
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
